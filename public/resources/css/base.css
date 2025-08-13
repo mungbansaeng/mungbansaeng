@@ -1,0 +1,453 @@
+@charset "UTF-8";
+
+/* --mainColor: #8572d6;
+--mainColor: #cdb9d9; */
+
+.clearfix::after{display: block; content: ''; clear: both;}
+
+html, body{width: 100%; height: 100%; -webkit-text-size-adjust : 100%;  /* 크롬, 사파리, 오페라 신버전 */ -ms-text-size-adjust : 100%;  /* IE */ -moz-text-size-adjust : 100%;  /* 파이어폭스 */ -o-text-size-adjust : 100%;  /* 오페라 구버전 */}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, hr{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: middle;
+    color: var(--black);
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+    font-family: var(--baseFontFamily);
+    font-size: 16px;
+    font-weight: var(--baseFontRegular);
+    background-color: var(--white);
+    color: var(--white);
+    width: 100%;
+    height: 100%;
+}
+
+ol, ul, li {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+a:hover,a:active,a:focus, a{text-decoration:none;}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.upper {text-transform:uppercase;}
+
+::selection{background-color: var(--mainColor); color: var(--white);}
+
+/* textarea,input,select 모음 시작 */
+
+textarea,input,select{background: none; border: none; -webkit-appearance: none; -webkit-border-radius: 0; padding: 0;  box-sizing: border-box; font-family: var(--baseFontFamily); font-size: 16px; font-weight: var(--baseFontRegular); color: var(--black); width: 100%; height: 100%; resize: none;}
+
+input[type="password"]{font-family: sans-serif;}
+
+textarea::placeholder,input::placeholder{font-family: var(--baseFontFamily); font-size: 16px; font-weight: var(--baseFontRegular); color: var(--gray);}
+
+input[type="text"],input[type="password"],input[type="tel"]{padding-left: 10px;}
+
+input:focus,textarea:focus,select:focus{outline: none;}
+
+select{appearance: none; background-image: url("/public/resources/images/select_arrow.png"); background-position: center right+10px; background-repeat: no-repeat;}
+
+/* textarea,input,select 모음 끝 */
+
+/* 네모 checkbox v자 체크 시작 */
+
+input[type="checkbox"]{display: none;}
+input[type="checkbox"] + label{cursor: pointer;}
+input[type="checkbox"] + label .v_designCheck{display: inline-block; width: 14px; height: 14px; border: 1px solid var(--mainColor); margin-right: 4px; position: relative;}
+input[type="checkbox"]:checked + label .v_designChecked{display: inline-block; height: 8px; width: 4px; border-bottom: 2px solid var(--mainColor); border-right: 2px solid var(--mainColor); position: absolute; top: 40%; right: 50%; transform: translate(50%,-50%) rotate(45deg);}
+
+/* 네모 checkbox v자 체크 끝 */
+
+/* 네모 checkbox 배경색 있는 v자 체크 시작 */
+
+input[type="checkbox"]{display: none;}
+input[type="checkbox"] + label{cursor: pointer;}
+input[type="checkbox"] + label .vb_designCheck{display: inline-block; width: 14px; height: 14px; border: 1px solid #b7b7b7; background-color: #b7b7b7; margin-right: 4px; position: relative;}
+input[type="checkbox"] + label .vb_designChecked{display: inline-block; height: 8px; width: 4px; border-bottom: 2px solid var(--white); border-right: 2px solid var(--white); position: absolute; top: 40%; right: 50%; transform: translate(50%,-50%) rotate(45deg);}
+input[type="checkbox"]:checked + label .vb_designCheck{background-color: var(--mainColor); border-color: var(--mainColor);}
+
+/* 네모 checkbox 배경색 있는 v자 체크 끝 */
+
+/* 동그라미 checkbox o자 체크 시작 */
+
+input[type="checkbox"]{display: none;}
+input[type="checkbox"] + label{cursor: pointer;}
+input[type="checkbox"] + label .o_designCheck{display: inline-block; width: 14px; height: 14px; border: 1px solid var(--mainColor); border-radius: 50%; margin-right: 4px; position: relative;}
+input[type="checkbox"]:checked + label .o_designChecked{display: inline-block; height: 9px; width: 9px; border-radius: 50%; background-color: var(--mainColor); position: absolute; top: 50%; right: 50%; transform: translate(50%,-50%);}
+
+/* 동그라미 checkbox o자 체크 끝 */
+
+/* 동그라미 checkbox v자 체크 시작 */
+
+input[type="checkbox"]{display: none;}
+input[type="checkbox"] + label{cursor: pointer;}
+input[type="checkbox"] + label .ov_designCheck{display: inline-block; width: 20px; height: 20px; border: 1px solid #b7b7b7; background-color: #b7b7b7; border-radius: 50%; margin-right: 4px; position: relative;}
+input[type="checkbox"] + label .ov_designChecked{display: inline-block; height: 10px; width: 6px; border-bottom: 3px solid var(--white); border-right: 3px solid var(--white); position: absolute; top: 42%; right: 50%; transform: translate(50%,-50%) rotate(45deg);}
+input[type="checkbox"]:checked + label .ov_designCheck{background-color: var(--mainColor); border-color: var(--mainColor);}
+
+/* 동그라미 checkbox 끝 */
+
+/* 스위치 checkbox 시작 */
+
+input[type="checkbox"]{display: none;}
+input[type="checkbox"] + label{cursor: pointer;}
+input[type="checkbox"] + label .switchCheck{display: inline-block; width: 60px; height: 30px; background-color: #b7b7b7; border-radius: 50px; margin-right: 4px; position: relative;}
+input[type="checkbox"] + label .switchChecked{width: 22px; height: 22px; border-radius: 50%; background-color: var(--white); position: absolute; top: 50%; left: 4px; transform: translateY(-50%); box-shadow: 2px 4px 6px rgba(0,0,0,0.2); transition: all 0.4s;}
+input[type="checkbox"]:checked + label .switchCheck{background-color: var(--mainColor);}
+input[type="checkbox"]:checked + label .switchChecked{left: calc(100% - 26px);}
+
+/* 스위치 checkbox 끝 */
+
+/* v자 radio 시작 */
+
+input[type="radio"]{display: none;}
+input[type="radio"] + label{cursor: pointer;}
+input[type="radio"] + label .v_designCheck{display: inline-block; width: 14px; height: 14px; border: 1px solid var(--mainColor); margin-right: 4px; position: relative;}
+input[type="radio"]:checked + label .v_designChecked{display: inline-block; height: 8px; width: 4px; border-bottom: 2px solid var(--mainColor); border-right: 2px solid var(--mainColor); position: absolute; top: 40%; right: 50%; transform: translate(50%,-50%) rotate(45deg);}
+input[type="radio"] + label .o_designCheck_text{vertical-align: text-top;}
+
+/* v자 radio 끝 */
+
+/* 동그라미 radio 시작 */
+
+.radio_list{margin-left: 20px;}
+.radio_list:first-child{margin-left: 0;}
+input[type="radio"]{display: none;}
+input[type="radio"] + label{cursor: pointer;}
+input[type="radio"] + label .o_designCheck{display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--gray); margin-right: 2px; position: relative; vertical-align: text-bottom;}
+input[type="radio"]:checked + label .o_designChecked{display: inline-block; height: 9px; width: 9px; border-radius: 50%; background-color: var(--mainColor); position: absolute; top: 50%; right: 50%; transform: translate(50%,-50%);}
+
+/* 동그라미 radio 끝 */
+
+/* 동그라미 radio v자 체크 시작 */
+
+input[type="radio"]{display: none;}
+input[type="radio"] + label{cursor: pointer;}
+input[type="radio"] + label .ov_designCheck{display: inline-block; width: 20px; height: 20px; border: 1px solid #b7b7b7; background-color: #b7b7b7; border-radius: 50%; margin-right: 4px; position: relative;}
+input[type="radio"] + label .ov_designChecked{display: inline-block; height: 10px; width: 6px; border-bottom: 3px solid var(--white); border-right: 3px solid var(--white); position: absolute; top: 42%; right: 50%; transform: translate(50%,-50%) rotate(45deg);}
+input[type="radio"]:checked + label .ov_designCheck{background-color: var(--mainColor); border-color: var(--mainColor);}
+
+/* 동그라미 radio 끝 */
+
+/* selectbox 시작 */
+
+.selectbox{width: 100%; height: 48px; position: relative;}
+.selectbox_tit{height: 100%; padding-left: 10px; box-sizing: border-box; position: relative; cursor: pointer; border: 1px solid var(--lightGray);}
+.selectbox_text{vertical-align: baseline; color: var(--black); font-size: 16px;}
+.selectbox_depth{position: absolute; top: 47px; left: 0; width: 100%; max-height: 200px; height: auto; background-color: var(--white); border: 1px solid var(--lightGray); display: none; z-index: 10; box-sizing: border-box; overflow-y: scroll;}
+.selectbox_depth li{cursor: pointer; height: 48px; font-size: 16px; padding-left: 10px; box-sizing: border-box; border-bottom: 1px solid var(--lightGray);}
+.selectbox_depth li:hover{background-color: var(--mainColor); color: var(--white);}
+.selectbox_depth #soldOut:hover{background-color: var(--white); color: var(--black);}
+.select_arrow{display: inline-block; height: 6px; width: 6px; border-bottom: 2px solid #ccc; border-right: 2px solid #ccc; position: absolute; top: 46%; right: 20px; transform: translateY(-50%) rotate(45deg); transition: all 0.4s;}
+.select_arrow.arrowMove{top: 54%; transform: translateY(-50%) rotate(225deg);}
+
+/* selectbox 끝 */
+
+/* editor */
+.ck-content{width: 100%; height: 400px; resize: none; padding: 10px; box-sizing: border-box; border: none; outline-style: none; background-color: transparent; line-height: 1.4;}
+.ck-viewContent{line-height: 1.4;}
+.ck-content strong, .ck-viewContent strong{font-weight: var(--baseFontBold); vertical-align: top;}
+.text-tiny, .ck-content figure.image>figcaption span.text-tiny, .ck-viewContent figure.image>figcaption span.text-tiny{font-size: 0.7em;}
+.text-small, .ck-content figure.image>figcaption span.text-small, .ck-viewContent figure.image>figcaption span.text-small{font-size: 0.85em;}
+.text-big, .ck-content figure.image>figcaption span.text-big, .ck-viewContent figure.image>figcaption span.text-big{font-size: 1.4em;}
+.text-huge, .ck-content figure.image>figcaption span.text-huge, .ck-viewContent figure.image>figcaption span.text-huge{font-size: 1.8em;}
+.ck-content .table, .ck-viewContent .table{display: block; border: 1px solid #000;}
+.ck-content .table table, .ck-viewContent .table table{border-collapse: collapse; border-spacing: 0; width: 100%; height: 100%; border: 1px double #b3b3b3;}
+.ck-content .table table td, .ck-content .table table th, .ck-viewContent .table table td, .ck-viewContent .table table th{min-width: 2em; padding: 0.4em; border: 1px solid #bfbfbf;}
+.ck-content .table table th, .ck-viewContent .table table th{background-color: rgba(0, 0, 0, 0.05); font-weight: 700;}
+figure.table{width: 100%; box-sizing: border-box;}
+.ck-content figure.image, .ck-viewContent figure.image{margin: 1em 0; text-align: left;}
+figure.image img, .ck-viewContent img{max-width: 100%; height: auto;}
+.ck-content .raw-html-embed, .ck-viewContent .raw-html-embed{position: relative; height: 0; padding-bottom: 56%;}
+.ck-content .raw-html-embed iframe, .ck-viewContent .raw-html-embed iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+.ck.ck-editor .ck-placeholder::before{font-weight: var(--baseFontMedium); color: var(--gray);}
+figure.image.image-style-align-center{margin: 1em auto; text-align: center;}
+figure.image.image-style-align-right{margin: 1em 0; text-align: right;}
+.ck-content figure.image>figcaption, .ck-viewContent figure.image>figcaption, .ck-content figure.image>figcaption span, .ck-viewContent figure.image>figcaption span, .ck-content figure.image>figcaption strong, .ck-viewContent figure.image>figcaption strong{font-size: 1em; color: #828282; vertical-align: top;}
+
+/* iframe 시작 */
+
+.iframeBox{position: relative; height: 0; padding-bottom: 56%;}
+.iframeBox iframe{position: absolute; top: 0; left: 0; width: 100%; height: 100%;}
+
+/* iframe 끝 */
+
+
+/* datapicker 시작 */
+#ui-datepicker-div{width: 400px;}
+.ui-datepicker-header{width: 100%; height: 40px; text-align: center; position: relative; background-color: var(--mainColor); display: flex; align-items: center; justify-content: center;}
+.ui-datepicker-prev span, .ui-datepicker-next span{display: none;}
+.ui-datepicker-prev, .ui-datepicker-next{display: block; width: 20px; height: 20px; background-position: center center; background-repeat: no-repeat; position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer;}
+.ui-datepicker-title select{background-image: url("/public/resources/images/calendar_ymdown.png");}
+.ui-datepicker-prev{background-image: url("/admin/resources/images/datapicker_prev.png"); left: 20px;}
+.ui-datepicker-next{background-image: url("/admin/resources/images/datapicker_next.png"); right: 20px;}
+.ui-datepicker-title{display: inline-block; font-size: 16px; color: var(--white);}
+.ui-datepicker-month, .ui-datepicker-year{border: none; color: var(--white); font-size: 16px; font-weight: 500; background-color: var(--mainColor);}
+.ui-datepicker-month{width: 56px;}
+.ui-datepicker-year{width: 64px; margin-right: 10px;}
+.ui-datepicker-calendar{width: 100%; background-color: var(--white); border: 1px solid #f1f1f1;}
+.ui-datepicker-calendar th, .ui-datepicker-calendar td{padding: 8px 0; text-align: center; font-size: 14px;}
+.ui-datepicker-calendar td span{color: #adadad;}
+.ui-datepicker-calendar td a{color: var(--black);}
+.ui-datepicker-calendar td[data-event="click"]{cursor: pointer;}
+.ui-datepicker-calendar td[data-event="click"]:hover{background-color: var(--mainColor);}
+.ui-datepicker-calendar td[data-event="click"]:hover a{color: var(--white);}
+/* datapicker 끝 */
+
+/* width 시작 */
+
+.w1500{width: 1500px;}
+.w1400{width: 1400px;}
+.w1200{width: 1200px;}
+.w1024{width: 1024px;}
+.w768{width: 768px;}
+.w540{width: 540px;}
+.w400{width: 400px;}
+
+/* strong */
+.color_strong{color: var(--mainColor); vertical-align: baseline;}
+.bold_strong{font-weight: var(--baseFontExtraBold); vertical-align: baseline;}
+
+/* width 끝 */
+
+@media screen and (max-width: 1500px){
+
+    .w1500{width: 100%;}
+
+}
+
+@media screen and (max-width: 1400px){
+
+    .w1400{width: 100%;}
+
+}
+
+@media screen and (max-width: 1200px){
+
+    .w1200{width: 100%;}
+
+}
+
+@media screen and (max-width: 768px){
+
+    .w768{width: 100%;}
+
+}
+
+@media screen and (max-width: 400px){
+
+    .w400{width: 100%;}
+
+}
+
+/**************************** header class ****************************/
+
+.headerFixed{position: fixed; top: 0; left: 0; width: 100%;}
+.headerAbsolute{position: absolute; top: 0; left: 0; width: 100%;}
+
+/**************************** // header class ****************************/
+
+/**************************** scroll ****************************/
+
+::-webkit-scrollbar {width: 4px;}
+::-webkit-scrollbar-track {background-color: var(--white);}
+::-webkit-scrollbar-thumb {background: var(--mainColor);}
+::-webkit-scrollbar-button {display: none;}
+
+/**************************** // scroll ****************************/
+
+/**************************** column ****************************/
+
+.flex-vc-hc-container{display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
+.flex-vc-hsb-container{display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;}
+.flex-vc-hl-container{display: flex; align-items: center; justify-content: flex-start; flex-wrap: wrap;}
+.flex-vc-hr-container{display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap;}
+.flex-vt-hl-container{display: flex; align-items: flex-start; justify-content: flex-start; flex-wrap: wrap;}
+.flex-vt-hr-container{display: flex; align-items: flex-start; justify-content: flex-end; flex-wrap: wrap;}
+.flex-vt-hc-container{display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap;}
+.flex-vt-hsb-container{display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;}
+.flex-vb-hl-container{display: flex; align-items: end; justify-content: flex-start; flex-wrap: wrap;}
+.flex-vb-hc-container{display: flex; align-items: end; justify-content: center; flex-wrap: wrap;}
+.flex-vb-hsb-container{display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap;}
+
+.flex-hc-container{display: flex; justify-content: center; flex-wrap: wrap;}
+.flex-hsb-container{display: flex; justify-content: space-between; flex-wrap: wrap;}
+.flex-hl-container{display: flex; justify-content: flex-start; flex-wrap: wrap;}
+.flex-hr-container{display: flex; justify-content: flex-end; flex-wrap: wrap;}
+
+.col-2-box{width: 50%;}
+.col-3-box{width: 33.33%;}
+.col-4-box{width: 25%;}
+.col-5-box{width: 20%;}
+
+.col-2-list{width: calc(50% - 8px); margin-right: var(--listMarginRight2);}
+.col-2-list:nth-child(2n){margin-right: 0;}
+.col-3-list{width: calc(33.33% - 18px); margin-right: var(--listMarginRight3);}
+.col-3-list:nth-child(3n){margin-right: 0;}
+.col-4-list{width: calc(25% - 20px); margin-right: var(--listMarginRight4);}
+.col-4-list:nth-child(4n){margin-right: 0;}
+.col-5-list{width: 20%;}
+.col-6-list{width: 16.66%;}
+
+@media screen and (max-width: 1600px){
+
+    .col-1-1600{width: 100%;}
+    .col-2-1600{width: 50%;}
+    .col-3-1600{width: 33.33%;}
+    .col-4-1600{width: 25%;}
+    .col-5-1600{width: 20%;}
+    .col-6-1600{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 1200px){
+
+    .col-1-1200{width: 100%;}
+    .col-2-1200{width: 50%;}
+    .col-3-1200{width: 33.33%;}
+    .col-4-1200{width: 25%;}
+    .col-5-1200{width: 20%;}
+    .col-6-1200{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 1024px){
+
+    .col-1-1024{width: 100%;}
+    .col-2-1024{width: calc(50% - 18px); margin-right: var(--listMarginRight3);}
+    .col-2-1024:nth-child(3n){margin-right: var(--listMarginRight3);}
+    .col-2-1024:nth-child(2n){margin-right: 0;}
+    .col-3-1024{width: 33.33%;}
+    .col-4-1024{width: 25%;}
+    .col-5-1024{width: 20%;}
+    .col-6-1024{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 768px){
+
+    .col-1-768{width: 100%; margin-right: 0;}
+    .col-1-768:nth-child(3n){margin-right: 0;}
+    .col-2-768{width: 50%;}
+    .col-3-768{width: 33.33%;}
+    .col-4-768{width: 25%;}
+    .col-5-768{width: 20%;}
+    .col-6-768{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 640px){
+
+    .col-1-640{width: 100%; margin-right: 0;}
+    .col-2-640{width: 50%;}
+    .col-3-640{width: 33.33%;}
+    .col-4-640{width: 25%;}
+    .col-5-640{width: 20%;}
+    .col-6-640{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 480px){
+
+    .col-1-480{width: 100%;}
+    .col-2-480{width: 50%;}
+    .col-3-480{width: 33.33%;}
+    .col-4-480{width: 25%;}
+    .col-5-480{width: 20%;}
+    .col-6-480{width: 16.66%;}
+
+}
+
+@media screen and (max-width: 340px){
+
+    .col-1-340{width: 100%;}
+    .col-2-340{width: 50%;}
+    .col-3-340{width: 33.33%;}
+    .col-4-340{width: 25%;}
+    .col-5-340{width: 20%;}
+    .col-6-340{width: 16.66%;}
+
+}
+
+/**************************** // column ****************************/
+
+/**************************** 반응형 줄바꿈 ****************************/
+
+.lb_1920{display: block;}
+.lb2_1920{display: block; height: 30px;}
+
+@media screen and (max-width: 1600px){
+
+    .lb_1600{display: block;}
+    .lb2_1600{display: block; height: 18px;}
+    .lbex_1600{display: none;}
+
+}
+
+@media screen and (max-width: 1200px){
+
+    .lb_1200{display: block;}
+    .lb2_1200{display: block; height: 18px;}
+    .lbex_1200{display: none;}
+
+}
+
+@media screen and (max-width: 1024px){
+
+    .lb_1024{display: block;}
+    .lb2_1024{display: block; height: 18px;}
+    .lbex_1024{display: none;}
+
+}
+
+@media screen and (max-width: 768px){
+
+    .lb_768{display: block;}
+    .lb2_768{display: block; height: 18px;}
+    .lbex_768{display: none;}
+
+}
+
+@media screen and (max-width: 480px){
+
+    .lb_480{display: block;}
+    .lb2_480{display: block; height: 10px;}
+    .lbex_480{display: none;}
+
+}
+
+/**************************** // 반응형 줄바꿈 ****************************/

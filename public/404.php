@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>잘못된 페이지</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <link rel="SHORTCUT ICON" href="/images/common/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/public/resources/css/base.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/public/resources/css/fonts.css" media="all">
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+<style>
+
+    /**************************** 변수 ****************************/
+        :root{
+    
+            --red: #ff425c;
+            --white: #fff;
+            --offWhite: #f1f1f1;
+            --black: #171a18;
+            --lightGray: #eeeeee;
+            --gray: #7a7a7a;
+            --baseFontFamily: 'NanumSquare','Malgun Gothic','Dotum', sans-serif;
+            --baseFontRegular: 400;
+            --baseFontBold: 700;
+            --baseFontExtraBold: 800;
+    
+            --listMarginRight2: 12px;
+            --listMarginRight3: 26px;
+            --listMarginRight4: 20px;
+    
+        }
+    
+    /**************************** // 변수 ****************************/
+
+    .error404_wrap{width: 100%; height: 100vh; text-align: center;}
+    .error404_icon{margin-bottom: 46px; width: 400px; display: inline-block;}
+    .error404_tit{font-size: 40px; font-weight: var(--baseFontExtraBold); margin-bottom: 40px;}
+    .error404_desc{line-height: 1.8; margin-bottom: 60px;}
+    .error404_btn a{width: 180px; height: 50px; margin: 0 auto; border-radius: 50px; background-color: var(--gray); color: var(--white);}
+
+    @media screen and (max-width: 768px){
+
+        .error404_wrap{padding: 0 20px; box-sizing: border-box;}
+        .error404_tit{font-size: 28px;}
+
+    }
+
+    @media screen and (max-width: 480px){
+
+        .error404_wrap{height: 100%; padding: 0 15px;}
+        .error404_icon{width: 100%;}
+        .error404_tit{font-size: 20px; margin-bottom: 28px;}
+        .error404_desc{font-size: 14px; margin-bottom: 28px;}
+        .error404_btn a{width: 160px; height: 42px;}
+
+    }
+
+</style>
+    <div class="error404_wrap flex-vc-hc-container">
+        <ul>
+            <li class="error404_icon">
+                <lottie-player src="/public/resources/images/404.json" background="transparent" style="width: 100%; height: 100%;" speed="1" loop autoplay>
+                </lottie-player>
+            </li>
+            <li class="error404_tit">서비스 이용에 불편을 드려 죄송합니다.</li>
+            <li class="error404_desc">잘못된 접근이거나 요청하신 페이지를 찾을 수 없습니다.<br>입력하신 페이지 주소가 정확한지 다시 한번 확인해 주세요.</li>
+            <li class="error404_btn"><a href="/" class="flex-vc-hc-container">홈으로 가기</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+
+
+/********** 달력 디자인 시작 **********/
+
+/* 달력 공통 시작 */
+
+.admin_calcon{height: 547px; position: relative; overflow: hidden;}
+.calendar{width: 100%; position: relative; overflow: hidden;}
+.holiday_desc{width: 100%; font-size: 14px; margin-top: 6px}
+.holiday, .holiday .calendar_day{color: #fc4c4e;}
+.saturday, .saturday .calendar_day{color: #0099ff;}
+
+/* 달력 공통 끝 */
+
+/* 달력 년도, 월 부분 시작 */
+
+.calendar_head{padding: 14px 40px; box-sizing: border-box; background-color: var(--mainColor); color: var(--white); display: flex; align-items: center; justify-content: space-between; border-top-left-radius: 20px; border-top-right-radius: 20px;}
+.calendar_ym{opacity: 0; cursor: pointer; text-align: center;}
+.ym_con{position: relative; margin: 0 12px;}
+.ym_text{color: var(--white); font-size: 20px; font-weight: 400;}
+#goToday{color: var(--white); font-size: 18px; padding: 4px 12px; border: 1px solid var(--white); cursor: pointer;}
+.ym_text::after{display: inline-block; content: ""; width: 10px; height: 6px; background-image: url("/public/resources/images/calendar_ymdown.png"); background-position: center center; margin-left: 10px; vertical-align: middle;}
+.calendar_ym{position: absolute; bottom: 0; left: 0;}
+.calendar_arrow{cursor: pointer;}
+
+/* 달력 년도, 월 부분 끝 */
+
+/* 달력 요일 부분 시작 */
+
+.calendar_body{border: 1px solid var(--lightGray); border-top: none; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; height: 455px;}
+
+.calendar_top li{width: 14.28%; padding: 24px 0; text-align: center;}
+
+/* 달력 요일 부분 끝 */
+
+/* 달력 날짜 부분 시작 */
+
+.calendar_bottom .calendar_dayBox{width: 14.28%; height: 65px; text-align: center; position: relative;}
+.calendar_bottom .day_box{position: relative;}
+.calendar_day{width: 29px; height: 29px; border-radius: 50%; cursor: pointer; position: relative; z-index: 2;}
+.today .calendar_day{background-color: var(--mainColor); color: var(--white);}
+
+/* 달력 날짜 부분 끝 */
+
+/* 달력 일정 시작 */
+
+.calendar_planBox{position: absolute; bottom: 0; right: 0; width: 100%; height: 0; display: flex; background-color: var(--white); border-radius: 20px; align-items: center; justify-content: center; overflow: hidden; transition: all 0.4s; z-index: 2;}
+.calendar_listBox{width: 600px; height: 0; background-color: var(--white); border-radius: 20px; box-shadow: 4px 4px 10px rgb(0 0 0 / 20%); padding: 20px; box-sizing: border-box; position: relative; transition: all 0.4s; opacity: 0;}
+.plan_head{width: 100%; margin-bottom: 40px; box-sizing: border-box;}
+.plan_date{font-size: 18px;}
+.plan_close{cursor: pointer; width: 24px; height: 24px;}
+.plan_close img{width: 100%;}
+.plan_body{height: 0; opacity: 0; transition: all 0.4s; overflow-y: scroll; text-align: left;}
+.plan_list{font-size: 18px; padding: 10px 46px; border-bottom: 1px solid var(--gray); text-align: left; position: relative; text-align: left; word-break: break-all; line-height: 1.2;}
+.plan_list:nth-child(1){border-top: 1px solid var(--gray);}
+.plan_list::after{display: block; content: ''; width: 6px; height: 6px; border-radius: 50%; background-color: #ff7559; position: absolute; top: 50%; transform: translateY(-50%); left: 18px;}
+.plan_writeBtn{width: 60px; height: 60px; background-color: #79d1cf; border-radius: 50%; box-shadow: 4px 4px 10px rgb(0 0 0 / 20%); cursor: pointer;}
+
+.calendarplan_writeBox{background-color: var(--white); transition: all 0.4s; display: none;}
+.calendarplan_writeBox .plan_description{height: 220px; border: 1px solid var(--gray); padding: 10px; box-sizing: border-box; margin-bottom: 20px;}
+.calendarplan_writeBox .plan_submit{width: 100px; height: 40px; background-color: var(--black); border-radius: 50px; padding: 0 10px; box-sizing: border-box; color: var(--white); transition: all 0.4s; cursor: pointer; margin-right: 6px;}
+.calendarplan_writeBox .plan_submit:hover{box-shadow: 4px 4px 10px rgb(0 0 0 / 20%); transform: translateY(-4px);}
+.calendarplan_writeBox .plan_cancel{width: 100px; height: 40px; border: 1px solid var(--black); border-radius: 50px; padding: 0 10px; box-sizing: border-box; color: var(--black); transition: all 0.4s; cursor: pointer; margin-left: 6px;}
+.calendarplan_writeBox .plan_cancel:hover{box-shadow: 4px 4px 10px rgb(0 0 0 / 20%); transform: translateY(-4px);}
+
+.no_plan{width: 100%; height: 100%;}
+
+.plan_btnBox{width: 100%; height: 48px;}
+.plan_btnBox input{width: calc(50% - 12px); height: 100%; border-radius: 10px; color: #fff; cursor: pointer;}
+.calendar_delplan{background-color: #ff7559;}
+.calendar_modiplan{background-color: #79d1cf;}
+
+/* 달력 일정 끝 */
+
+/* 달력 팝업 시작 */
+
+.calendar_popup{position: absolute; bottom: 0; left: 0; width: 100%; height: 0; background-color: var(--white); z-index: 2; opacity: 0;}
+.calendar_popBox{width: 80%; height: 80%; box-shadow: 4px 4px 10px rgba(0,0,0,0.2); border-radius: 20px; padding: 30px 20px; box-sizing: border-box;}
+.calendar_popDate{font-size: 18px; font-weight: 500;}
+.calendar_popClose{cursor: pointer;}
+.calendar_popClose img{width: 20px; height: 20px;}
+.calendar_popTop{margin-bottom: 30px;}
+.plan_check{width: 6px; height: 6px; border-radius: 50%; background-color: var(--mainColor); position: absolute; bottom: 0; right: 50%; transform: translateX(50%); z-index: 1;}
+#calendar_listPopup .calendar_popBottom{overflow-y: scroll;}
+.calendar_popBottom{height: 66%; margin-bottom: 30px;}
+.calendar_popBottom textarea{border: 1px solid var(--lightGray); padding: 10px; box-sizing: border-box;}
+.calendar_planList{position: relative; line-height: 1.2; margin-bottom: 10px; padding: 0 50px 0 10px; cursor: pointer;}
+.calendar_planList::before{display: block; content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background-color: var(--mainColor);}
+.calendar_planList:hover{background-color: rgba(133, 114, 214, 0.1);}
+.calendar_planDesc{padding: 10px 0;}
+
+.calendar_noPlan::before{display: block; content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%; background-color: var(--gray);}
+.calendar_regiBtn{width: 120px; height: 40px; background-color: var(--black); border-radius: 50px; color: var(--white); text-align: center; cursor: pointer;}
+.calendar_backBtn{width: 120px; height: 40px; border: 1px solid var(--black); border-radius: 50px; text-align: center; cursor: pointer; margin-left: 10px;}
+.calendar_planBtn{position: absolute; top: 50%; right: 6px; transform: translateY(-50%);}
+.calendar_planBtn p img{width: 20px;}
+
+/* 달력 팝업 끝 */
+
+/* 달력 기간 시작 */
+
+.calendar_dayBox .pick{background-color: var(--mainColor); color: var(--white);}
+.calendar_dayBox.pick_back::after{display: block; content: ''; background-color: rgb(133, 114, 214, 0.2); width: 100%; height: 29px; position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 1;}
+.calendar_dayBox.first_pick_back.pick_back::after{width: 50%; left: 50%;}
+.calendar_dayBox.last_pick_back.pick_back::after{width: 50%; left: 0;}
+
+/* 달력 기간 끝 */
+
+/* 달력 날짜 부분 끝 */
+
+/********** 달력 디자인 끝 **********/
