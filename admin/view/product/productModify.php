@@ -309,7 +309,7 @@
                 </div>
                 <div class="admin_btnBox">
                     <input type="button" class="admin_btn modify_btn" value="수정하기">
-                    <input type="button" class="admin_backBtn" onclick="location.href='./productList'" value="돌아가기">
+                    <input type="button" class="admin_backBtn" onclick="location.href='./productList?categoryIdx1=<?=$_GET['categoryIdx1']?>&categoryIdx2=<?=$_GET['categoryIdx2']?>&categoryIdx3=<?=$_GET['categoryIdx3']?>'" value="돌아가기">
                 </div> 
             </div>
         </form>
@@ -338,7 +338,7 @@
             },
             success:function(data){
 
-                // console.log(data);
+                console.log(data);
 
                 // 썸네일
                 var attachArray = data[1];
@@ -358,64 +358,64 @@
                 }
 
                 // 상품명
-                $(".title").val(data[0][0]['title']);
+                $(".title").val(data[2][0]['title']);
 
                 // 브랜드
-                $("#brand .selectedValue").val(data[0][0]['brandIdx']);
+                $("#brand .selectedValue").val(data[2][0]['brandIdx']);
 
-                $("#brand .selectbox_text").text($("#brand .selectbox .selectbox_depth li[data-val='" + data[0][0]['brandIdx'] + "']").text());
+                $("#brand .selectbox_text").text($("#brand .selectbox .selectbox_depth li[data-val='" + data[2][0]['brandIdx'] + "']").text());
 
                 // 키워드
-                $("input[name='keyword']").val(data[0][0]['keyword'])
+                $("input[name='keyword']").val(data[2][0]['keyword'])
 
                 // 판매상태
-                $("#status_" + data[0][0]['status']).prop("checked", true);
+                $("#status_" + data[2][0]['status']).prop("checked", true);
 
                 let subCategoryList = "";
 
-                if (data[0].length == 1) {
+                if (data[2].length == 1) {
 
                     subCategoryList += "<div class='option_addList flex-vc-hsb-container'><div class='input_addDesignBox'><div class='multi_selectbox product_selectbox sub_category flex-vc-hsb-container'><div class='selectbox selectbox0'><input type='hidden' class='selectedValue' name='subCategoryIdx1[]'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>카테고리 선택</span><span class='select_arrow'></span></p><ul class='selectbox_depth oneDepth'></ul></div><div class='selectbox selectbox1'><input type='hidden' class='selectedValue' name='subCategoryIdx2[]'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>카테고리 선택</span><span class='select_arrow'></span></p><ul class='selectbox_depth twoDepth'></ul></div><div class='selectbox selectbox2'><input type='hidden' class='selectedValue' name='subCategoryIdx3[]'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>카테고리 선택</span><span class='select_arrow'></span></p><ul class='selectbox_depth threeDepth'></ul></div></div></div><input type='button' class='admin_optionAddBtn' value='추가' onclick='addOption(this);'><input type='button' class='admin_optionDelBtn' value='삭제' onclick='delOption(this);'></div>";
 
                 }
 
                 // 카테고리
-                for (cc=0; cc < data[0].length; cc++) {
+                for (cc=0; cc < data[2].length; cc++) {
 
-                    if (data[0][cc]['type'] == "main") { // 메인카테고리
+                    if (data[2][cc]['type'] == "main") { // 메인카테고리
 
-                        $("#mainCategory input[name='categoryIdx1']").val(data[0][0]['categoryIdx1']);
-                        $("#mainCategory .selectbox0 .selectbox_text").text(data[0][0]['categoryTitle1']);
+                        $("#mainCategory input[name='categoryIdx1']").val(data[2][0]['categoryIdx1']);
+                        $("#mainCategory .selectbox0 .selectbox_text").text(data[2][0]['categoryTitle1']);
 
-                        if (data[0][0]['categoryTitle2']) {
+                        if (data[2][0]['categoryTitle2']) {
 
-                            $("#mainCategory input[name='categoryIdx2']").val(data[0][0]['categoryIdx2']);
-                            $("#mainCategory .selectbox1 .selectbox_text").text(data[0][0]['categoryTitle2']);
-
-                        }
-
-                        if (data[0][0]['categoryTitle3']) {
-
-                            $("#mainCategory input[name='categoryIdx3']").val(data[0][0]['categoryIdx3']);
-                            $("#mainCategory .selectbox2 .selectbox_text").text(data[0][0]['categoryTitle3']);  
+                            $("#mainCategory input[name='categoryIdx2']").val(data[2][0]['categoryIdx2']);
+                            $("#mainCategory .selectbox1 .selectbox_text").text(data[2][0]['categoryTitle2']);
 
                         }
 
-                    } else if (data[0][cc]['type'] == "sub") {
+                        if (data[2][0]['categoryTitle3']) {
 
-                        if (data[0][cc]['categoryTitle2'] == null) {
+                            $("#mainCategory input[name='categoryIdx3']").val(data[2][0]['categoryIdx3']);
+                            $("#mainCategory .selectbox2 .selectbox_text").text(data[2][0]['categoryTitle3']);  
 
-                            data[0][cc]['categoryTitle2'] = "카테고리 선택";
+                        }
+
+                    } else if (data[2][cc]['type'] == "sub") {
+
+                        if (data[2][cc]['categoryTitle2'] == null) {
+
+                            data[2][cc]['categoryTitle2'] = "카테고리 선택";
 
                         }
                         
-                        if (data[0][cc]['categoryTitle3'] == null) {
+                        if (data[2][cc]['categoryTitle3'] == null) {
 
-                            data[0][cc]['categoryTitle3'] = "카테고리 선택";
+                            data[2][cc]['categoryTitle3'] = "카테고리 선택";
 
                         }
 
-                        subCategoryList += "<div class='option_addList flex-vc-hsb-container'><div class='input_addDesignBox'><div class='multi_selectbox product_selectbox sub_category flex-vc-hsb-container'><div class='selectbox selectbox0'><input type='hidden' class='selectedValue' name='subCategoryIdx1[]' value='" + data[0][cc]['categoryIdx1'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[0][cc]['categoryTitle1'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth oneDepth'></ul></div><div class='selectbox selectbox1'><input type='hidden' class='selectedValue' name='subCategoryIdx2[]' value='" + data[0][cc]['categoryIdx2'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[0][cc]['categoryTitle2'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth twoDepth'></ul></div><div class='selectbox selectbox2'><input type='hidden' class='selectedValue' name='subCategoryIdx3[]' value='" + data[0][cc]['categoryIdx3'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[0][cc]['categoryTitle3'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth threeDepth'></ul></div></div></div><input type='button' class='admin_optionAddBtn' value='추가' onclick='addOption(this);'><input type='button' class='admin_optionDelBtn' value='삭제' onclick='delOption(this);'></div>";
+                        subCategoryList += "<div class='option_addList flex-vc-hsb-container'><div class='input_addDesignBox'><div class='multi_selectbox product_selectbox sub_category flex-vc-hsb-container'><div class='selectbox selectbox0'><input type='hidden' class='selectedValue' name='subCategoryIdx1[]' value='" + data[2][cc]['categoryIdx1'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[2][cc]['categoryTitle1'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth oneDepth'></ul></div><div class='selectbox selectbox1'><input type='hidden' class='selectedValue' name='subCategoryIdx2[]' value='" + data[2][cc]['categoryIdx2'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[2][cc]['categoryTitle2'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth twoDepth'></ul></div><div class='selectbox selectbox2'><input type='hidden' class='selectedValue' name='subCategoryIdx3[]' value='" + data[2][cc]['categoryIdx3'] + "'><p class='selectbox_tit flex-vc-hl-container' onclick='selectboxOpen(this);'><span class='selectbox_text'>" + data[2][cc]['categoryTitle3'] + "</span><span class='select_arrow'></span></p><ul class='selectbox_depth threeDepth'></ul></div></div></div><input type='button' class='admin_optionAddBtn' value='추가' onclick='addOption(this);'><input type='button' class='admin_optionDelBtn' value='삭제' onclick='delOption(this);'></div>";
 
                     }
 
@@ -424,30 +424,30 @@
                 $(".subCatgory_addBox").append(subCategoryList);
 
                 // 가격
-                $(".price").val(comma(data[0][0]['price']));
+                $(".price").val(comma(data[2][0]['price']));
 
                 // 할인 퍼센트
-                $(".discountPercent").val(data[0][0]['discountPercent']);
+                $(".discountPercent").val(data[2][0]['discountPercent']);
 
                 // 옵션
                 let productOptionList = "";
                 let productOptionStock;
 
-                if (data[2] == "none") {
+                if (data[3] == "none") {
 
                     productOptionList += "<div class='option_addList multiOption_addList flex-vc-hsb-container'><div class='input_addDesignBox flex-vc-hsb-container'><input type='text' name='optionName[]' class='input_addDesign' placeholder='옵션명을 입력하세요.' value=''><input type='text' name='optionPrice[]' class='input_addDesign' placeholder='옵션 가격을 입력하세요.' oninput='inputonlyNum(this); liveNumberComma(this);' value=''><input type='text' name='optionStock[]' class='input_addDesign lastInput_addDesign' placeholder='옵션 재고수량을 입력하세요.' oninput='inputonlyNum(this); liveNumberComma(this);' value=''></div><input type='button' class='admin_optionAddBtn' value='추가' onclick='addOption(this);'><input type='button' class='admin_optionDelBtn' value='삭제' onclick='delOption(this);'></div>";
 
                 } else {
 
-                    for (po=0; po < data[2].length; po++) {
+                    for (po=0; po < data[3].length; po++) {
 
-                        if (data[2][po]['productOptionStock'] == -1) {
+                        if (data[3][po]['productOptionStock'] == -1) {
 
                             productOptionStock = "00";
 
                         } else {
 
-                            productOptionStock = data[2][po]['productOptionStock'];
+                            productOptionStock = data[3][po]['productOptionStock'];
 
                         }
 
@@ -460,31 +460,31 @@
                 $(".productOption_addBox").append(productOptionList);
 
                 // 적립금 퍼센트
-                $(".pointPercent").val(data[0][0]['pointPercent']);
+                $(".pointPercent").val(data[2][0]['pointPercent']);
 
                 // 재고수량
-                if (data[0][0]['stock'] == -1) {
+                if (data[2][0]['stock'] == -1) {
 
                     productStock = "00";
 
                 } else {
 
-                    productStock = data[0][0]['stock'];
+                    productStock = data[2][0]['stock'];
 
                 }
                 $(".stock").val(productStock);
 
                 // 배송기간
-                $(".deliveryDate").val(data[0][0]['deliveryDate']);
+                $(".deliveryDate").val(data[2][0]['deliveryDate']);
 
                 // 주문한도
-                $(".buyLlimit").val(data[0][0]['buyLlimit']);
+                $(".buyLlimit").val(data[2][0]['buyLlimit']);
 
                 // 내용 (PC)
-                pcDescriptionobjEditor.setData(data[0][0]['pcDescription']);
+                pcDescriptionobjEditor.setData(data[2][0]['pcDescription']);
 
                 // 내용 (Mobile)
-                mobileDescriptionobjEditor.setData(data[0][0]['mobileDescription']);
+                mobileDescriptionobjEditor.setData(data[2][0]['mobileDescription']);
 
             },
             error:function(request,status,error){
@@ -683,7 +683,7 @@
 
                     if (confirm("현재 페이지를 닫으시겠습니까?")) {
 
-                        location.href = "/admin/view/product/productList";
+                        location.href = "/admin/view/product/productList?categoryIdx1=<?=$_GET['categoryIdx1']?>&categoryIdx2=<?=$_GET['categoryIdx2']?>&categoryIdx3=<?=$_GET['categoryIdx3']?>";
 
                     } else {
 

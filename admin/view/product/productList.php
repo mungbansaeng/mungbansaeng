@@ -109,6 +109,48 @@
 
 <script>
 
+    let categoryIdx1 = "<?=$_GET['categoryIdx1']?>";
+    let categoryIdx2 = "<?=$_GET['categoryIdx2']?>";
+    let categoryIdx3 = "<?=$_GET['categoryIdx3']?>";
+
+    if (categoryIdx1 != "") {
+
+            $(".selectbox0 input[name='categoryIdx1']").val(categoryIdx1);
+            $(".selectbox1 input[name='categoryIdx2']").val(categoryIdx2);
+            $(".selectbox2 input[name='categoryIdx3']").val(categoryIdx3);
+
+        categoryListSelect(1);
+
+        setTimeout(() => {
+
+            if (categoryIdx1 != "") {
+
+                $(".selectbox0 .selectbox_text").text($(".selectbox0 .selectbox_depth li[data-val='" + categoryIdx1 + "']").text());
+
+            } else if (categoryIdx2 != "") {
+
+                $(".selectbox1 .selectbox_text").text($(".selectbox1 .selectbox_depth li[data-val='" + categoryIdx2 + "']").text());
+
+            } else if (categoryIdx3 != "") {
+
+                $(".selectbox2 .selectbox_text").text($(".selectbox2 .selectbox_depth li[data-val='" + categoryIdx3 + "']").text());
+
+            }
+        
+        }, 40);
+
+        viewList("search");
+
+        $(".act").val("list");
+
+    } else {
+
+        categoryListSelect(1);
+
+        viewList();
+
+    }
+
     // 카테고리 리스트 가져오기
 
     function categoryListSelect (depth, object) {
@@ -117,7 +159,7 @@
             type: "POST", 
             dataType: "json",
             async: true,
-            url: "/admin/controller/productController.php",
+            url: "/admin/controller/productController",
             global: false,
             data: {
                 "page": "product",
@@ -189,8 +231,6 @@
 
     }
 
-    categoryListSelect(1);
-
     function viewList (type = "") {
 
         const form = $("#produtForm");
@@ -251,7 +291,7 @@
             type: "POST", 
             dataType: "json",
             async: true,
-            url: "/admin/controller/boardController.php",
+            url: "/admin/controller/boardController",
             global: false,
             data: form.serialize(),
             traditional: true,
@@ -261,11 +301,11 @@
 
                 // console.log(data);
 
-                var listCount = data[0]['totalCount'];
+                var listCount = data[1]['totalCount'];
 
                 $(".totalCountText").text(comma(listCount));
 
-                var listData = data[1];
+                var listData = data[2];
                 var nowPageCount = listData.length;
 
                 var listHtml = "";
@@ -317,7 +357,7 @@
 
                         }
 
-                        listHtml += "<div class='admin_tbody_list flex-vc-hsb-container'><div class='col-num-list flex-vc-hc-container'><input type='checkbox' class='checkEach' id='check" + listData[pcl]['idx'] + "'><label for='check" + listData[pcl]['idx'] + "' onclick='checkEach(this);'><p class='vb_designCheck'><span class='vb_designChecked'></span></p></label></div><div class='col-num-list flex-vc-hc-container'>" + sort + "</div><div class='col-order-list flex-vc-hc-container'><img src='/admin/resources/upload/" + listData[pcl]['fileName'] + "' alt='상품썸네일' style='width: 100%; height: 100%;'></div><div class='col-title-list admin_tbody_title flex-vc-hl-container'><a href='./productModify?idx=" + listData[pcl]['idx'] + "' class='flex-vc-hl-container'><p>" + listData[pcl]['title'] + "</p></a></div><div class='col-show-list flex-vc-hc-container'>" + price + "원</div><div class='col-show-list flex-vc-hc-container'>" + status + "</div><div class='col-show-list flex-vc-hc-container'>" + soldCount + "</div><div class='col-show-list flex-vc-hc-container'>" + stock + "</div><div class='col-show-list flex-vc-hc-container'><input type='checkbox' name='showYn' id='showYn" + pcl + "' " + showYnChecked + "><label for='showYn" + pcl + "' onclick='boardShowYn(this);'><p class='switchCheck'><span class='switchChecked'></span></p><input type='hidden' class='boardFile' name='boardFile' value='" + listData[pcl]['file'] + "'></label></div><div class='col-order-list admin_tbody_order  flex-vc-hc-container'><ul class='order_arrow'><li onclick=\"sortChange(this, 'up', " + listData[pcl]['sort'] + ")\">▲</li><li onclick=\"sortChange(this, 'down', " + listData[pcl]['sort'] + ")\">▼</li></ul><input type='hidden' class='sortIdxValue' value='" + listData[pcl]['sortIdx'] + "'></div></div>";
+                        listHtml += "<div class='admin_tbody_list flex-vc-hsb-container'><div class='col-num-list flex-vc-hc-container'><input type='checkbox' class='checkEach' id='check" + listData[pcl]['idx'] + "'><label for='check" + listData[pcl]['idx'] + "' onclick='checkEach(this);'><p class='vb_designCheck'><span class='vb_designChecked'></span></p></label></div><div class='col-num-list flex-vc-hc-container'>" + sort + "</div><div class='col-order-list flex-vc-hc-container'><img src='/admin/resources/upload/" + listData[pcl]['fileName'] + "' alt='상품썸네일' style='width: 100%; height: 100%;'></div><div class='col-title-list admin_tbody_title flex-vc-hl-container'><a href='./productModify?idx=" + listData[pcl]['idx'] + "&categoryIdx1=" + $(".categoryIdxValue1").val() + "&categoryIdx2=" + $(".categoryIdxValue2").val() + "&categoryIdx3=" + $(".categoryIdxValue3").val() + "&searchType=" + $(".searchType").val() + "&searchText=" + $(".searchText").val() + "' class='flex-vc-hl-container'><p>" + listData[pcl]['title'] + "</p></a></div><div class='col-show-list flex-vc-hc-container'>" + price + "원</div><div class='col-show-list flex-vc-hc-container'>" + status + "</div><div class='col-show-list flex-vc-hc-container'>" + soldCount + "</div><div class='col-show-list flex-vc-hc-container'>" + stock + "</div><div class='col-show-list flex-vc-hc-container'><input type='checkbox' name='showYn' id='showYn" + pcl + "' " + showYnChecked + "><label for='showYn" + pcl + "' onclick='boardShowYn(this);'><p class='switchCheck'><span class='switchChecked'></span></p><input type='hidden' class='boardFile' name='boardFile' value='" + listData[pcl]['file'] + "'></label></div><div class='col-order-list admin_tbody_order  flex-vc-hc-container'><ul class='order_arrow'><li onclick=\"sortChange(this, 'up', " + listData[pcl]['sort'] + ")\">▲</li><li onclick=\"sortChange(this, 'down', " + listData[pcl]['sort'] + ")\">▼</li></ul><input type='hidden' class='sortIdxValue' value='" + listData[pcl]['sortIdx'] + "'></div></div>";
 
                         sort--;
 
@@ -377,8 +417,6 @@
 
     }
 
-    viewList();
-
     function selectDel () {
 
         $(".del_idx").remove();
@@ -411,7 +449,7 @@
                 type: "POST", 
                 dataType: "json",
                 async: true,
-                url: "/admin/controller/boardController.php",
+                url: "/admin/controller/boardController",
                 global: false,
                 data: form.serialize(),
                 traditional: true,
@@ -419,7 +457,7 @@
                 },
                 success:function(data){
 
-                    console.log(data);
+                    // console.log(data);
 
                     if (data == "success") {
 
@@ -480,7 +518,7 @@
             type: "POST", 
             dataType: "json",
             async: true,
-            url: "/admin/controller/boardController.php",
+            url: "/admin/controller/boardController",
             global: false,
             data: form.serialize(),
             traditional: true,
@@ -627,7 +665,7 @@
             type: "POST", 
             dataType: "json",
             async: true,
-            url: "/admin/controller/boardController.php",
+            url: "/admin/controller/boardController",
             global: false,
             data: form.serialize(),
             traditional: true,
@@ -635,7 +673,7 @@
             },
             success:function(data){
 
-                console.log(data);
+                // console.log(data);
 
                 if (data !== "success") {
 
